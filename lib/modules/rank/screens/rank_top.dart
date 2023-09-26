@@ -64,12 +64,15 @@ class _RankTop extends State<RankTop>
               ),
               _buildTabBar(context, _controller),
               Expanded(
-                child: TabBarView(
-                  controller: _controller,
-                  children: const [
-                    TableRank(),
-                    TableRank(),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: TabBarView(
+                    controller: _controller,
+                    children: const [
+                      TableRank(),
+                      TableRank(),
+                    ],
+                  ),
                 ),
               )
             ]),

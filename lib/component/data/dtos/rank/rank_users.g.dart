@@ -6,16 +6,7 @@ part of 'rank_users.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RankUsersDto _$RankUsersDtoFromJson(Map<String, dynamic> json) => RankUsersDto(
-      (json['data'] as List<dynamic>)
-          .map((e) => UserRankDto.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
 
-Map<String, dynamic> _$RankUsersDtoToJson(RankUsersDto instance) =>
-    <String, dynamic>{
-      'data': instance.data,
-    };
 
 UserRankDto _$UserRankDtoFromJson(Map<String, dynamic> json) => UserRankDto(
       json['name'] as String? ?? 'Player',

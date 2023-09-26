@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TableRank extends StatefulWidget
 
@@ -15,6 +14,7 @@ with TickerProviderStateMixin, AutomaticKeepAliveClientMixin
 {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     print('build here');
     return Text('123');
   }

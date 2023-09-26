@@ -69,8 +69,12 @@ class _RankTop extends State<RankTop>
                   child: TabBarView(
                     controller: _controller,
                     children: const [
-                      TableRank(),
-                      TableRank(),
+                      TableRank(
+                        urlCall: '',
+                      ),
+                      TableRank(
+                        urlCall: '',
+                      ),
                     ],
                   ),
                 ),

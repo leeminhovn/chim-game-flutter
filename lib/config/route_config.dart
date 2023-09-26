@@ -1,8 +1,8 @@
 import 'package:chim_kha/config/router_name.dart';
 import 'package:chim_kha/modules/game/cubit/game_cubit.dart';
 import 'package:chim_kha/modules/game/screens/game.dart';
-import 'package:chim_kha/modules/game/screens/my_dashboard_game.dart';
 import 'package:chim_kha/modules/game/screens/play_game.dart';
+import 'package:chim_kha/modules/rank/screens/rank_top.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -25,5 +25,11 @@ final GoRouter routerConfig = GoRouter(
                 child: PlayGame(
                   gameState: context.read<GameCubit>().state,
                 ));
+          }),
+      GoRoute(
+          path: ApplicationRouteName.rank,
+          name: ApplicationRouteName.rank,
+          builder: (BuildContext context, GoRouterState state) {
+            return const RankTop();
           }),
     ]);

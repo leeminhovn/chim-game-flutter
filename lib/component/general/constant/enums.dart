@@ -1,0 +1,1 @@
+enum PageRank { record, totalPoints }

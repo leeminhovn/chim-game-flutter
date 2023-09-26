@@ -15,13 +15,12 @@ class PopupDead extends StatefulWidget {
 class _PopupDead extends State<PopupDead> {
   final int totalPointsLocal =
       int.parse(UserLocalStorge.store.getString("totalPoints") ?? '0');
-      final int recordLocal =
-        int.parse(UserLocalStorge.store.getString("reCord") ?? '0');
+   int recordLocal =
+      int.parse(UserLocalStorge.store.getString("record") ?? '0');
   @override
   void initState() {
-    
-
     if (widget.point > recordLocal) {
+      recordLocal = widget.point;
       UserLocalStorge.store.setString('record', widget.point.toString());
     }
     UserLocalStorge.store
@@ -46,7 +45,7 @@ class _PopupDead extends State<PopupDead> {
         Container(
           padding: const EdgeInsets.all(6),
           constraints: BoxConstraints(maxWidth: screenWidth * 0.8),
-          width: 300,
+          width: 370,
           decoration: BoxDecoration(
               color: const Color(0xffdbda96),
               border: Border.all(color: const Color(0xff523747), width: 4)),
@@ -69,7 +68,7 @@ class _PopupDead extends State<PopupDead> {
                       title: 'Score',
                       point: widget.point,
                     ),
-                     ModalResult(
+                    ModalResult(
                       title: 'Record',
                       point: recordLocal,
                     ),

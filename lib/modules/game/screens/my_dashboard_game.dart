@@ -128,9 +128,9 @@ class _MyDashboardGame extends State<MyDashboardGame>
             duration: const Duration(seconds: 1),
             child: ButtonOptions(
               onTap: () {
-                print("Score");
+                context.pushNamed(ApplicationRouteName.rank);
               },
-              text: 'Score',
+              text: 'Rank',
             ),
           )
         ],

@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:chim_kha/component/data/dtos/rank/rank_users.dart';
 import 'package:flutter/material.dart';
 
@@ -28,15 +27,12 @@ class _TableRank extends State<TableRank>
   Widget build(BuildContext context) {
     super.build(context);
 
-    return Container(
-      // child: ListView.builder(children: []),
-      child: ListView.builder(
-          physics: const BouncingScrollPhysics(),
-          itemCount: _data.length,
-          itemBuilder: (context, index) {
-            return RenderUserRank(index, _data[index]);
-          }),
-    );
+    return ListView.builder(
+        physics: const BouncingScrollPhysics(),
+        itemCount: _data.length,
+        itemBuilder: (context, index) {
+          return RenderUserRank(index, _data[index]);
+        });
   }
 
   @override
@@ -57,17 +53,61 @@ class RenderUserRank extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (_statusRank) {
       case 0:
+        return BaseCard(
+          colorCard: const Color(0xffffcb08),
+          boxShadow:
+              const BoxShadow(offset: Offset(0, 5), color: Color(0xfff8ad3e)),
+          avatar: image,
+          children: _renderLeft(_data.name, _data.record),
+        );
+      case 1:
+        return BaseCard(
+          colorCard: Color(0xffffd7de),
+          boxShadow:
+              const BoxShadow(offset: Offset(0, 5), color: Color(0xfff7b8c3)),
+          avatar: image,
+          children: _renderLeft(_data.name, _data.record),
+        );
       default:
         return BaseCard(
-          children: [],
+          colorCard: const Color.fromARGB(255, 255, 255, 255),
+          boxShadow:
+              const BoxShadow(offset: Offset(0, 5), color: Color(0xfff2f2f2)),
+          avatar: image,
+          children: _renderLeft(_data.name, _data.record),
         );
     }
+  }
+
+  Widget _renderLeft(String name, int points) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          name,
+          style: const TextStyle(
+              color: Color(0xff6d3919), fontWeight: FontWeight.w600),
+        ),
+        Text(
+          points.toString(),
+          style: const TextStyle(color: Color(0xff6d3919), fontSize: 20),
+        )
+      ],
+    );
   }
 }
 
 class BaseCard extends StatefulWidget {
-  final List<Widget> children;
-  const BaseCard({super.key, required this.children});
+  final Widget children;
+  final Color colorCard;
+  final BoxShadow boxShadow;
+  final String avatar;
+  const BaseCard(
+      {super.key,
+      required this.children,
+      required this.colorCard,
+      required this.boxShadow,
+      required this.avatar});
 
   @override
   State<StatefulWidget> createState() => _BaseCard();
@@ -81,14 +121,12 @@ class _BaseCard extends State<BaseCard> {
       margin: const EdgeInsets.only(top: 10, bottom: 10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(13),
-          color: const Color(0xffffcb08),
-          boxShadow: const [
-            BoxShadow(offset: Offset(0, 5), color: Color(0xfff8ad3e)),
-          ]),
-      child: Wrap(
+          color: widget.colorCard,
+          boxShadow: [widget.boxShadow]),
+      child: Row(
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 10, left: 10, right: 25),
+            margin: const EdgeInsets.only(top: 0, left: 10, right: 15),
             height: 50,
             width: 50,
             decoration: BoxDecoration(
@@ -100,7 +138,7 @@ class _BaseCard extends State<BaseCard> {
                 ),
                 child: Image.network(image)),
           ),
-          Column(children: widget.children),
+          widget.children
         ],
       ),
     );
